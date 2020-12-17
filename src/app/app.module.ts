@@ -16,6 +16,8 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 import { HomeModule } from './modules/home/home.module';
 import { FavouritesModule } from './modules/favourites/favourites.module';
+import { ListModule } from './modules/list/list.module';
+import { AccountModule } from './modules/account/account.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { FavouritesModule } from './modules/favourites/favourites.module';
     AppRoutingModule,
     OnsenModule,
     HomeModule,
-    FavouritesModule
+    FavouritesModule,
+    ListModule,
+    AccountModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,

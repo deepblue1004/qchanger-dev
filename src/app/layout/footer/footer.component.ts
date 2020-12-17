@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
-  public selected: number = 0
+  public selectedIndex: number = 0
   constructor(
     private router: Router
   ) { }
@@ -15,19 +15,8 @@ export class FooterComponent implements OnInit {
   ngOnInit() {
   }
 
-  switchTab(tabName: string) {
-    if(tabName == "home") {
-      this.selected = 0;
-    }
-    else if(tabName == "favourites") {
-      this.selected = 1;
-    }
-    else if(tabName == "list"){
-      this.selected = 2;
-    }
-    else {
-      this.selected = 3;
-    }
+  switchTab(tabName: string, tabId: number) {
+    this.selectedIndex = tabId;
     this.router.navigate([`/${tabName}`]);
   }
 

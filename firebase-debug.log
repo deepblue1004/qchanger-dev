@@ -1,0 +1,13 @@
+[debug] [2020-12-17T15:34:54.423Z] ----------------------------------------------------------------------
+[debug] [2020-12-17T15:34:54.424Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\2304166\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2020-12-17T15:34:54.425Z] CLI Version:   9.0.0
+[debug] [2020-12-17T15:34:54.425Z] Platform:      win32
+[debug] [2020-12-17T15:34:54.425Z] Node Version:  v13.2.0
+[debug] [2020-12-17T15:34:54.426Z] Time:          Thu Dec 17 2020 23:34:54 GMT+0800 (Singapore Standard Time)
+[debug] [2020-12-17T15:34:54.426Z] ----------------------------------------------------------------------
+[debug] [2020-12-17T15:34:54.426Z] 
+[debug] [2020-12-17T15:34:54.438Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-12-17T15:34:54.439Z] > authorizing via signed-in user
+[debug] [2020-12-17T15:34:54.439Z] [iam] checking project qchanger-dev for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-12-17T15:34:54.442Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/qchanger-dev:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
