@@ -31,7 +31,9 @@
               "node_modules/onsenui/css/onsen-css-components.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/@visurel/iconify-angular/iconify.min.js"
+            ]
           },
           "configurations": {
             "production": {

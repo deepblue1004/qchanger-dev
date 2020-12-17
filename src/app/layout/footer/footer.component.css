@@ -9,3 +9,12 @@
 #bottom-toolbar label {
   font-size: x-small;
 }
+#bottom-toolbar > div {
+  color: RGBA(255, 255, 255, 0.8);
+}
+
+.selectedTab {
+  background: -webkit-linear-gradient(orange, #ffff00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

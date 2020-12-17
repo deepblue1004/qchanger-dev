@@ -14,6 +14,8 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
+import { HomeModule } from './modules/home/home.module';
+import { FavouritesModule } from './modules/favourites/favourites.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { MainLayoutComponent } from './layout/main-layout/main-layout.component'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    OnsenModule
+    OnsenModule,
+    HomeModule,
+    FavouritesModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
