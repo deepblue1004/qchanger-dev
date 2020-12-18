@@ -1,5 +1,7 @@
 <ons-page>
   <app-header></app-header>
-  <router-outlet></router-outlet>
+  <div [@routeAnimations]="prepareRoute(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
   <app-footer></app-footer>
 </ons-page>

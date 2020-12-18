@@ -10,22 +10,34 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeMainComponent,
-    children: []
+    children: [],
+    data: {
+      animation: 'HomePage'
+    }
   },
   {
     path: 'favourites',
     component: FavouritesMainComponent,
-    children: []
+    children: [],
+    data: {
+      animation: 'FavPage'
+    }
   },
   {
     path: 'list',
     component: ListMainComponent,
-    children: []
+    children: [],
+    data: {
+      animation: 'ListPage'
+    }
   },
   {
     path: 'account',
     component: AccountMainComponent,
-    children: []
+    children: [],
+    data: {
+      animation: 'AccountPage'
+    }
   }
 ];
 

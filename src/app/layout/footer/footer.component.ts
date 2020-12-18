@@ -24,6 +24,8 @@ export class FooterComponent implements OnInit {
   }
 
   switchTab(tabId: number) {
+    this.navTabs.map(t => t.isSelected = false);
+    this.navTabs[tabId].isSelected = true;
     this.router.navigate([`/${this.navTabs[tabId].routePath}`]);
   }
 
