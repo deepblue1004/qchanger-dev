@@ -16,11 +16,13 @@ export class FooterComponent implements OnInit {
 
   ngOnInit() {
     this.navTabs = [
-      new NavTab("home",       "/home",      true),
+      new NavTab("home",       "/home"),
       new NavTab("favourites", "/favourites"),
       new NavTab("list",       "/list"),
       new NavTab("account",    "/account")
     ];
+    console.log(this.router.url);
+    // this.navTabs.map(t => t.isSelected = this.router.url);
   }
 
   switchTab(tabId: number) {
@@ -37,9 +39,9 @@ class NavTab {
   public routePath: string;
   public isSelected: boolean;
 
-  constructor(name: string, routePath: string, isSelected?: boolean) {
+  constructor(name: string, routePath: string) {
     this.name = name;
     this.routePath = routePath;
-    this.isSelected = isSelected ?? false;
+    this.isSelected = false;
   }
 }
