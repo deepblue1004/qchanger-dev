@@ -7,17 +7,37 @@ import { Router } from '@angular/router';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
-  public selectedIndex: number = 0
+  public selectedIndex: number;
+  public navTabs: NavTab[];
+
   constructor(
     private router: Router
   ) { }
 
   ngOnInit() {
+    this.navTabs = [
+      new NavTab("home",       "/home",      true),
+      new NavTab("favourites", "/favourites"),
+      new NavTab("list",       "/list"),
+      new NavTab("account",    "/account")
+    ];
   }
 
-  switchTab(tabName: string, tabId: number) {
-    this.selectedIndex = tabId;
-    this.router.navigate([`/${tabName}`]);
+  switchTab(tabId: number) {
+    this.router.navigate([`/${this.navTabs[tabId].routePath}`]);
   }
 
+}
+
+class NavTab {
+  public id: number;
+  public name: string;
+  public routePath: string;
+  public isSelected: boolean;
+
+  constructor(name: string, routePath: string, isSelected?: boolean) {
+    this.name = name;
+    this.routePath = routePath;
+    this.isSelected = isSelected ?? false;
+  }
 }

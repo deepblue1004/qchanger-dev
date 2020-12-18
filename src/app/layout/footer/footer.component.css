@@ -1,5 +1,6 @@
 .bottom-bar {
   height: 55px;
+  background-color: #343a40;
 }
 
 #bottom-toolbar i {
@@ -14,7 +15,17 @@
 }
 
 .selectedTab {
-  background: -webkit-linear-gradient(orange, #ffff00);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ffa500;
+  display: inline-block;
+}
+
+@supports ((background-clip: text) or (-webkit-background-clip: text)) and
+  (-webkit-text-fill-color: transparent) {
+    .selectedTab {
+    background-image: linear-gradient(#ffa500, #ffff00);
+    background-size: cover;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
