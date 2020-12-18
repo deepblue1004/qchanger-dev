@@ -32,7 +32,7 @@
               "src/styles.css"
             ],
             "scripts": [
-              "node_modules/@visurel/iconify-angular/iconify.min.js"
+              "https://code.iconify.design/1/1.0.7/iconify.min.js"
             ]
           },
           "configurations": {
