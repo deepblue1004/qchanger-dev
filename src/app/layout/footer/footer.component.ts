@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-footer',
@@ -21,20 +22,22 @@ export class FooterComponent implements OnInit {
       new NavTab("list",       "/list"),
       new NavTab("account",    "/account")
     ];
-    console.log(this.router.url);
-    // this.navTabs.map(t => t.isSelected = this.router.url);
+
+    // Tab selection event
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(event => {
+      this.navTabs.map(t => t.isSelected = t.routePath == event['url'])
+    });
   }
 
   switchTab(tabId: number) {
-    this.navTabs.map(t => t.isSelected = false);
-    this.navTabs[tabId].isSelected = true;
     this.router.navigate([`/${this.navTabs[tabId].routePath}`]);
   }
 
 }
 
 class NavTab {
-  public id: number;
   public name: string;
   public routePath: string;
   public isSelected: boolean;

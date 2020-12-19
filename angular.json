@@ -29,10 +29,10 @@
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "node_modules/onsenui/css/onsenui.css",
               "node_modules/onsenui/css/onsen-css-components.css",
-              "src/styles.css"
+              "src/assets/styles.css"
             ],
             "scripts": [
-              "https://code.iconify.design/1/1.0.7/iconify.min.js"
+              "src/assets/iconify.min.js"
             ]
           },
           "configurations": {
