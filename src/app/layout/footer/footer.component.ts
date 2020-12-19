@@ -32,7 +32,7 @@ export class FooterComponent implements OnInit {
   }
 
   switchTab(tabId: number) {
-    this.router.navigate([`/${this.navTabs[tabId].routePath}`]);
+    this.router.navigate([this.navTabs[tabId].routePath]);
   }
 
 }

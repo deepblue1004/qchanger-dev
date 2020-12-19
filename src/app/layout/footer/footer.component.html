@@ -1,6 +1,6 @@
 <ons-bottom-toolbar>
-  <div class="align-content-center">
-    <div class="row d-flex m-2 " id="bottom-toolbar">
+  <div class="h-100">
+    <div class="row d-flex m-1" id="bottom-toolbar">
       <div class="col-3 d-flex flex-column justify-content-end align-items-center"
             (click)="switchTab(0)"
             [class.selectedTab]="navTabs[0].isSelected">
@@ -12,21 +12,21 @@
             (click)="switchTab( 1)"
             [class.selectedTab]="navTabs[1].isSelected">
         <i class="bi bi-heart"></i>
-        <label class="text-capitalize">{{navTabs[1].name}}</label>
+        <label>{{navTabs[1].name | titlecase}}</label>
       </div>
 
       <div class="col-3 d-flex flex-column justify-content-end align-items-center"
             (click)="switchTab(2)"
             [class.selectedTab]="navTabs[2].isSelected">
         <i class="bi bi-list-nested"></i>
-        <label class="text-capitalize">{{navTabs[2].name}}</label>
+        <label>{{navTabs[2].name | titlecase}}</label>
       </div>
 
       <div class="col-3 d-flex flex-column justify-content-end align-items-center"
             (click)="switchTab(3)"
             [class.selectedTab]="navTabs[3].isSelected">
         <i class="bi bi-person"></i>
-        <label class="text-capitalize">{{navTabs[3].name}}</label>
+        <label>{{navTabs[3].name | titlecase}}</label>
       </div>
     </div>
   </div>
