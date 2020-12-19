@@ -1,1 +1,45 @@
-<p>home-filter works!</p>
+<div id="filter-searchBar" class="bg-app-primary p-1">
+  <div class="row m-1">
+    <div class="col col-11 p-1">
+      <div class=" p-2 pl-3 pr-3 border border-dark rounded bg-light cursor-hand d-flex"
+        (click)=showFilterBody()>
+        <i class="bi bi-search mr-2 text-shadow"></i>
+        <span class="text-black-50" *ngIf="!isFilterVisible">
+          {{searchPlaceholder | titlecase}}
+        </span>
+        <input #searchInput type="text" class="w-100 border-0 bg-transparent"
+          *ngIf="isFilterVisible" (keyup)="searchKeywords=searchInput.value">
+      </div>
+    </div>
+    <!-- <div class="col col-1 p-1 text-center">
+      <i class="bi bi-filter-left icon-larger"></i>
+    </div> -->
+    <div class="col col-1 p-1 text-center">
+      <i class="bi bi-bell-fill icon-larger icon-stroke-white text-shadow"></i>
+    </div>
+  </div>
+</div>
+
+<div id="filter-body" class="bg-app-primary p-1 shadow" *ngIf="isFilterVisible" [@pullDownAnimation]>
+  <div class="row m-1">
+    <div class="col col-11 p-1">
+      <br>
+      <br>
+      {{searchKeywords}}
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class="row border border-dark" (click)="isFilterVisible=false">close</div>
+    </div>
+  </div>
+</div>
