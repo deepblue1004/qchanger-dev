@@ -1,20 +1,19 @@
 <div id="filter-searchBar" class="bg-app-primary p-1">
   <div class="row m-1">
-    <div class="col col-11 p-1">
-      <div class=" p-2 pl-3 pr-3 border border-dark rounded bg-light cursor-hand d-flex"
-        (click)=showFilterBody()>
+    <div class="col col-12 p-1 d-flex">
+      <span *ngIf="isFilterVisible" class="mr-2 pt-1" (click)="hideFilterBody()">
+        <i class="bi bi-chevron-left text-white font-weight-bold icon-larger text-shadow"></i>
+      </span>
+      <div class="w-100 p-2 pl-3 pr-3 mr-2 border border-dark rounded bg-light cursor-hand d-flex"
+        (click)="showFilterBody()">
         <i class="bi bi-search mr-2 text-shadow"></i>
         <span class="text-black-50" *ngIf="!isFilterVisible">
           {{searchPlaceholder | titlecase}}
         </span>
-        <input #searchInput type="text" class="w-100 border-0 bg-transparent"
-          *ngIf="isFilterVisible" (keyup)="searchKeywords=searchInput.value">
+        <input #searchInput type="text" class="w-100 border-0 bg-transparent" *ngIf="isFilterVisible"
+          [placeholder]="searchPlaceholder | titlecase"
+          (keyup)="searchKeywords=searchInput.value">
       </div>
-    </div>
-    <!-- <div class="col col-1 p-1 text-center">
-      <i class="bi bi-filter-left icon-larger"></i>
-    </div> -->
-    <div class="col col-1 p-1 text-center">
       <i class="bi bi-bell-fill icon-larger icon-stroke-white text-shadow"></i>
     </div>
   </div>
@@ -22,24 +21,68 @@
 
 <div id="filter-body" class="bg-app-primary p-1 shadow" *ngIf="isFilterVisible" [@pullDownAnimation]>
   <div class="row m-1">
-    <div class="col col-11 p-1">
-      <br>
-      <br>
-      {{searchKeywords}}
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <div class="row border border-dark" (click)="isFilterVisible=false">close</div>
+    <div class="col col-12 p-1">
+      <div class="text-center">
+        <div class="range-slide">
+          <div class="d-flex justify-content-between text-white">
+            <label class="font-weight-bold">{{filterProperties[0].name | titlecase}}</label>
+            <span class="font-weight-bold">
+              {{filterProperties[0].value}}
+              {{filterProperties[0].unit}}
+            </span>
+          </div>
+          <input #distance type="range" class="form-control-range rs-range" min="1" max="10" step="0.1"
+            (input)="setFilterProperty(0, distance.value, (distance.value - 1)/9)">
+          <div class="box-minmax">
+            <span>1</span>
+            <span>10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row m-1 border-top border-bottom">
+    <div class="col col-12 p-1">
+      <div class="text-center">
+        <div class="range-slide">
+          <div class="d-flex justify-content-between text-white">
+            <label class="font-weight-bold">{{filterProperties[1].name | titlecase}}</label>
+            <span class="font-weight-bold">
+              <span
+                [innerHTML]='filterProperties[1].value == 60 ? "<i class=\"fas fa-infinity\"></i>" : filterProperties[1].value'></span>
+              {{filterProperties[1].unit}}
+            </span>
+          </div>
+          <input #waitingTime type="range" class="form-control-range rs-range" min="5" max="60" value="60"
+            (input)="setFilterProperty(1, waitingTime.value, (waitingTime.value - 5)/55)">
+          <div class="box-minmax">
+            <span>5</span>
+            <span><i class="fas fa-infinity"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row m-1 border-bottom">
+    <div class="col col-12 p-1">
+      <div class="text-center">
+        <div class="range-slide">
+          <div class="d-flex justify-content-between text-white">
+            <label class="font-weight-bold">{{filterProperties[2].name | titlecase}}</label>
+            <span class="font-weight-bold">
+              {{filterProperties[2].unit.repeat(filterProperties[2].value)}}
+            </span>
+          </div>
+          <input #rating type="range" class="form-control-range rs-range" min="1" max="5" value="1"
+            (input)="setFilterProperty(2, rating.value, (rating.value - 1)/4)">
+          <div class="box-minmax">
+            <span>1</span>
+            <span>5</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

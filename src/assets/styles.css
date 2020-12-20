@@ -1,4 +1,12 @@
 .bg-app-primary {
+  background-color: #FFAC01;
+}
+
+.bg-app-primary-dark {
+  background-color: rgb(224, 165, 1);
+}
+
+.bg-app-primary-light {
   background-color: #f3db00;
 }
 
@@ -7,11 +15,15 @@
 }
 
 .text-app-primary {
-  color: #ffa500;
+  color: #FFAC01;
+}
+
+.text-app-primary-dark {
+  color: rgb(224, 165, 1);
 }
 
 .text-app-primary-gradient {
-  color: #ffa500;
+  color: #FFAC01;
 }
 
 @supports ((background-clip: text) or (-webkit-background-clip: text)) and
