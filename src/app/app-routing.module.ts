@@ -38,6 +38,15 @@ const routes: Routes = [
     data: {
       animation: 'AccountPage'
     }
+  },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',         // 404 page
+    redirectTo: 'home'
   }
 ];
 
