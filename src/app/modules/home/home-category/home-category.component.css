@@ -1,0 +1,32 @@
+.nav {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  /* justify-content: center; */
+}
+
+.cat-item {
+  display: grid;
+  border: 0px;
+  border-radius: 10px;
+  margin: 5px;
+  text-align: center;
+  align-items: center;
+  height: 90px;
+  padding: 10px;
+  background-color: #ffffff;
+  text-shadow: 1px 1px 5px #bfbfbf;
+  box-shadow: 1px 1px 5px #bfbfbf;
+}
+
+.cat-item > svg{
+  font-size:  50px;
+}
+
+.cat-item > label {
+  font-size: small;
+  font-weight: 500;
+  color: #666666;
+}

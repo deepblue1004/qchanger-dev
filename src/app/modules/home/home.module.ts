@@ -5,11 +5,13 @@ import { CommonModule } from '@angular/common';
 import { HomeMainComponent } from './home-main/home-main.component';
 import { HomeFilterComponent } from './home-filter/home-filter.component';
 import { OnsenModule } from 'ngx-onsenui';
+import { HomeCategoryComponent } from './home-category/home-category.component';
 
 @NgModule({
   declarations: [
     HomeMainComponent,
-    HomeFilterComponent
+    HomeFilterComponent,
+    HomeCategoryComponent
   ],
   imports: [
     CommonModule,

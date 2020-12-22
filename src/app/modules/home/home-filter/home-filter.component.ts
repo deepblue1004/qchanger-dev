@@ -8,7 +8,6 @@ import { pullDownAnimation } from 'app/animations';
   animations: [pullDownAnimation]
 })
 export class HomeFilterComponent implements OnInit {
-
   public searchPlaceholder: string;
   public searchKeywords: string;
   public isFilterVisible: boolean;

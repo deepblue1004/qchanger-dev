@@ -16,6 +16,7 @@ export class FooterComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // Content for bottom navigation bar
     this.navTabs = [
       new NavTab("home",       "/home"),
       new NavTab("favourites", "/favourites"),
@@ -27,7 +28,7 @@ export class FooterComponent implements OnInit {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(event => {
-      console.log(event);
+      // Use 'urlAfterRedirects' instead of 'url' because it may redirect
       this.navTabs.map(t => t.isSelected = t.routePath == event['urlAfterRedirects'])
     });
   }
