@@ -1,6 +1,6 @@
-<nav class="nav mt-2">
+<div class="nav mt-2">
   <div class="cat-item" *ngFor="let catItem of categoryItems">
     <span class="iconify" [attr.data-icon]="catItem.icon" data-inline="false"></span>
     <label>{{catItem.title | titlecase}}</label>
   </div>
-</nav>
+</div>

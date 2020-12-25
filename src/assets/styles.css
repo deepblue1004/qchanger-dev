@@ -37,6 +37,12 @@
   }
 }
 
+.blur-mask {
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  z-index: -1;
+}
+
 .cursor-hand {
   cursor: pointer;
 }
@@ -44,6 +50,12 @@
 .icon-stroke-white {
   color: white;
   -webkit-text-stroke: 1px #000000;
+}
+
+.stack-z1 {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
 }
 
 .text-shadow {

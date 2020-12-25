@@ -2,19 +2,18 @@
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
-  padding-left: 10px;
-  padding-right: 10px;
-  /* justify-content: center; */
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
 }
 
 .cat-item {
   display: grid;
-  border: 0px;
   border-radius: 10px;
   margin: 5px;
   text-align: center;
   align-items: center;
   height: 90px;
+  width: 70px;
   padding: 10px;
   background-color: #ffffff;
   text-shadow: 1px 1px 5px #bfbfbf;
@@ -29,4 +28,10 @@
   font-size: small;
   font-weight: 500;
   color: #666666;
+}
+
+@media only screen and (min-width: 768px) {
+  .nav {
+    justify-content: center;
+  }
 }

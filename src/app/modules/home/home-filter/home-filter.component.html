@@ -19,12 +19,12 @@
   </div>
 </div>
 
-<div id="filter-body" class="bg-app-primary p-1 shadow" *ngIf="isFilterVisible" [@pullDownAnimation]>
+<div class="p-1 shadow stack-z1 blur-mask rounded-lg" *ngIf="isFilterVisible" [@pullDownAnimation]>
   <div class="row m-1">
     <div class="col col-12 p-1">
       <div class="text-center">
         <div class="range-slide">
-          <div class="d-flex justify-content-between text-white">
+          <div class="d-flex justify-content-between">
             <label class="font-weight-bold">{{filterProperties[0].name | titlecase}}</label>
             <span class="font-weight-bold">
               {{filterProperties[0].value}}
@@ -46,7 +46,7 @@
     <div class="col col-12 p-1">
       <div class="text-center">
         <div class="range-slide">
-          <div class="d-flex justify-content-between text-white">
+          <div class="d-flex justify-content-between">
             <label class="font-weight-bold">{{filterProperties[1].name | titlecase}}</label>
             <span class="font-weight-bold">
               <span
@@ -69,7 +69,7 @@
     <div class="col col-12 p-1">
       <div class="text-center">
         <div class="range-slide">
-          <div class="d-flex justify-content-between text-white">
+          <div class="d-flex justify-content-between">
             <label class="font-weight-bold">{{filterProperties[2].name | titlecase}}</label>
             <span class="font-weight-bold">
               {{filterProperties[2].unit.repeat(filterProperties[2].value)}}
