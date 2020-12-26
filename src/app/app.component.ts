@@ -8,6 +8,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class AppComponent {
 
-  constructor(firestore: AngularFirestore) {
+  constructor() {
   }
 }

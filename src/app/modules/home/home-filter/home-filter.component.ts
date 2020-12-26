@@ -31,7 +31,6 @@ export class HomeFilterComponent implements OnInit {
       new FilterProperty("waiting time", 60, "min"),
       new FilterProperty("rating", 1, "★")
     ];
-    console.log(this.filterProperties);
   }
 
   showFilterBody() {

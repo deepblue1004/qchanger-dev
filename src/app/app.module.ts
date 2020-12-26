@@ -22,7 +22,6 @@ import { HomeModule } from './modules/home/home.module';
 import { FavouritesModule } from './modules/favourites/favourites.module';
 import { ListModule } from './modules/list/list.module';
 import { AccountModule } from './modules/account/account.module';
-import { CrudServiceModule } from './shared/crud-service/crud-service.module';
 
 @NgModule({
   declarations: [
@@ -41,8 +40,7 @@ import { CrudServiceModule } from './shared/crud-service/crud-service.module';
     HomeModule,
     FavouritesModule,
     ListModule,
-    AccountModule,
-    CrudServiceModule
+    AccountModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
