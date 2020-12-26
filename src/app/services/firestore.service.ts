@@ -13,24 +13,22 @@ import { BaseDatabaseModel } from 'app/models/_BaseDatabaseModel';
 */
 
 export class FirestoreService<T extends BaseDatabaseModel> {
-  private _firestore: AngularFirestore;
-  constructor(firestore: AngularFirestore) {
-    this._firestore = firestore;
+  constructor(private firestore: AngularFirestore) {
   }
 
   create(obj: T, docRef: string) {
-    return this._firestore.collection(docRef).add(obj);
+    return this.firestore.collection(docRef).add(obj);
   }
 
   listAll(docRef: string) {
-    return this._firestore.collection(docRef).snapshotChanges();
+    return this.firestore.collection(docRef).snapshotChanges();
   }
 
   update(obj: T, docRef: string) {
-    this._firestore.doc(docRef + obj.id).update(obj);
+    this.firestore.doc(docRef + obj.id).update(obj);
   }
 
   hardDelete(id: string, docRef: string) {
-    this._firestore.doc(`${docRef}/${id}`).delete();
+    this.firestore.doc(`${docRef}/${id}`).delete();
   }
 }
