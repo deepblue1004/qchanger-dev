@@ -1,15 +1,10 @@
 import { BaseDatabaseModel } from "./_BaseDatabaseModel";
 
-export class Promotion extends BaseDatabaseModel {
+export class PromotionType extends BaseDatabaseModel {
   title: string;
   description: string;
-  image: string;
-  route: string;
-  validFrom: Date;
-  validTo: Date;
-  type: string;
 
-  constructor(props: Promotion) {
+  constructor(props: PromotionType) {
     super();
     Object.keys(props).forEach(prop => {
       const value = props[prop];
