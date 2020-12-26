@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "qchanger-dev"
+  },
+  "targets": {
+    "qchanger-dev": {
+      "hosting": {
+        "qchanger-dev": [
+          "qchanger-dev"
+        ]
+      }
+    }
   }
 }

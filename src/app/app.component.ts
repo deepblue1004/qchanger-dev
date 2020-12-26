@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import * as ons from 'onsenui';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +7,7 @@ import * as ons from 'onsenui';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'qchanger-dev';
-  constructor() {
-  }
 
-  onClick() {
-    ons.notification.alert('Clicked!');
+  constructor(firestore: AngularFirestore) {
   }
 }
