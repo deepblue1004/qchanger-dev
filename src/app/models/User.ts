@@ -6,7 +6,6 @@ export class User extends BaseDatabaseModel {
   phone: string;
   email: string;
 
-
   constructor(props: User) {
     super();
     Object.keys(props).forEach(prop => {

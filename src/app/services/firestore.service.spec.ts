@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PromotionTypeService } from './promotion-type.service';
+import { FirestoreService } from './firestore.service';
 
-describe('PromotionTypeService', () => {
-  let service: PromotionTypeService;
+describe('FirestoreService', () => {
+  let service: FirestoreService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PromotionTypeService);
+    service = TestBed.inject(FirestoreService);
   });
 
   it('should be created', () => {

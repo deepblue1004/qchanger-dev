@@ -1,8 +1,8 @@
-import { PromotionTypeService } from './../../../services/promotion-type.service';
+import { DocRef } from './../../../services/DocRef.enum';
 import { PromotionType } from './../../../models/PromotionType';
 import { Promotion } from './../../../models/Promotion';
-import { PromotionService } from './../../../services/promotion.service';
 import { Component, OnInit } from '@angular/core';
+import { FirestoreService } from 'app/services/firestore.service';
 
 @Component({
   selector: 'app-home-main',
@@ -15,12 +15,12 @@ export class HomeMainComponent implements OnInit {
   promotions: Promotion[];
 
   constructor(
-    private promotionService: PromotionService,
-    private promotionTypeService: PromotionTypeService
+     private promotionTypeService: FirestoreService<PromotionType>,
+    private promotionService: FirestoreService<Promotion>
   ) { }
 
   ngOnInit() {
-    this.promotionService.listAll().subscribe(data => {
+    this.promotionService.listAll(DocRef.PROMOTION).subscribe(data => {
       this.promotions = data.map(e => {
         return {
           id: e.payload.doc.id,
@@ -29,8 +29,9 @@ export class HomeMainComponent implements OnInit {
       });
     });
 
-    this.promotionTypeService.listAll().subscribe(data => {
+    this.promotionTypeService.listAll(DocRef.PROMOTION_TYPE).subscribe(data => {
       this.promotionTypes = data.map(e => {
+        console.log(e.payload.doc);
         return {
           id: e.payload.doc.id,
           ...e.payload.doc.data() as PromotionType
