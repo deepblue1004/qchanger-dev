@@ -1,9 +1,9 @@
-import { AccountMainComponent } from './modules/account/account-main/account-main.component';
-import { ListMainComponent } from './modules/list/list-main/list-main.component';
-import { FavouritesMainComponent } from './modules/favourites/favourites-main/favourites-main.component';
-import { HomeMainComponent } from './modules/home/home-main/home-main.component';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {AccountMainComponent} from './modules/account/account-main/account-main.component';
+import {FavouritesMainComponent} from './modules/favourites/favourites-main/favourites-main.component';
+import {HomeMainComponent} from './modules/home/home-main/home-main.component';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+import {OrderMainComponent} from './modules/order/order-main/order-main.component';
 
 
 const routes: Routes = [
@@ -24,11 +24,11 @@ const routes: Routes = [
     }
   },
   {
-    path: 'list',
-    component: ListMainComponent,
+    path: 'order',
+    component: OrderMainComponent,
     children: [],
     data: {
-      animation: 'ListPage'
+      animation: 'OrderPage'
     }
   },
   {
@@ -54,4 +54,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

@@ -1,0 +1,103 @@
+h3 {
+  background: linear-gradient(#E8E8E8, #F9F9F9);
+  height: 40px;
+  line-height: 40px;
+  font-weight: bold;
+  margin: 0;
+  padding-left: 20px;
+}
+
+ul.upcoming-orders {
+  padding: 10px;
+  background-color: white;
+}
+
+ul.upcoming-orders > li {
+  list-style: none;
+  background-color: rgb(242, 242, 242);
+  margin-bottom: 10px;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+div.order-item-box {
+  padding-left: 120px;
+  position: relative;
+  height: 110px;
+}
+
+div.order-item-box img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 108px;
+  height: 108px;
+}
+
+div.order-item-box .merchant-name {
+  font-weight: bold;
+  margin-right: 4px;
+}
+
+div.order-item-box .merchant-location {
+  margin-left: 4px;
+  font-family: 'ArialMT', 'Arial', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+ul.merchant-stars {
+  padding-left: 0;
+  line-height: 16px;
+}
+
+ul.merchant-stars li {
+  list-style: none;
+  display: inline-block;
+  height: 12px;
+  line-height: 12px;
+  width: 12px;
+  background: url("assets/icon-star.svg") no-repeat center center;
+  background-size: cover;
+  margin-right: 2px;
+}
+
+.queue-info {
+  position: absolute;
+  bottom: 0;
+  left: 124px;
+  line-height: 24px;
+  width: 180px;
+}
+
+.queue-info .current, .queue-info .mine {
+  color: red;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.queue-info .separator {
+  font-size: 22px;
+  margin: 0 8px;
+}
+
+.queue-info .mine {
+  color: black;
+}
+.queue-info-eta {
+  position: absolute;
+  bottom: 0;
+  right: 4px;
+}
+span.eta{
+  margin-right: 4px;
+  margin-left: 20px;
+}
+span.btn-cancel {
+  position: absolute;
+  color: #6e6e6e;
+  right: 4px;
+  bottom: 32px;
+  font-size: 12px;
+  cursor: pointer;
+}

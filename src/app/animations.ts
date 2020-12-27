@@ -1,7 +1,7 @@
 import { animate, animateChild, group, query, style, transition, trigger } from "@angular/animations";
 
 export const changeTabAnimation = trigger('changeTabAnimation', [
-  transition('HomePage => *, FavPage => ListPage, FavPage => AccountPage, ListPage => AccountPage', [
+  transition('HomePage => *, FavPage => OrderPage, FavPage => AccountPage, OrderPage => AccountPage', [
     style({ position: 'relative' }),
     query(':enter, :leave', [
       style({
@@ -20,7 +20,7 @@ export const changeTabAnimation = trigger('changeTabAnimation', [
     query(':enter', animateChild())
   ]),
 
-  transition('AccountPage => *, ListPage => FavPage, ListPage => HomePage, FavPage => HomePage', [
+  transition('AccountPage => *, OrderPage => FavPage, OrderPage => HomePage, FavPage => HomePage', [
     style({ position: 'relative' }),
     query(':enter, :leave', [
       style({
