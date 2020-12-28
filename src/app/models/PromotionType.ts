@@ -4,7 +4,7 @@ import { BaseDatabaseModel } from "./_BaseDatabaseModel";
 export class PromotionType extends BaseDatabaseModel {
   title: string;
   description: string;
-  promotions: Promotion;
+  promotions: Promotion[];
 
   constructor(props: PromotionType) {
     super();

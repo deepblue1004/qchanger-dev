@@ -21,7 +21,7 @@ export class FirestoreService<T extends BaseDatabaseModel> {
   }
 
   listAll(docRef: string) {
-    return this.firestore.collection(docRef).snapshotChanges();
+    return this.firestore.collection<T>(docRef).snapshotChanges();
   }
 
   update(obj: T, docRef: string) {

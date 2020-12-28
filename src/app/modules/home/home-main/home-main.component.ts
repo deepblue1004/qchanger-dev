@@ -11,33 +11,34 @@ import { FirestoreService } from 'app/services/firestore.service';
 })
 export class HomeMainComponent implements OnInit {
 
-  promotionTypes: PromotionType[];
-  promotions: Promotion[];
+  promotionTypes: PromotionType[] = [];
 
   constructor(
-     private promotionTypeService: FirestoreService<PromotionType>,
+    private promotionTypeService: FirestoreService<PromotionType>,
     private promotionService: FirestoreService<Promotion>
   ) { }
 
   ngOnInit() {
-    this.promotionService.listAll(DocRef.PROMOTION).subscribe(data => {
-      this.promotions = data.map(e => {
-        return {
-          id: e.payload.doc.id,
-          ...e.payload.doc.data() as Promotion
-        }
-      });
-    });
-
+    // Get promotion type list
     this.promotionTypeService.listAll(DocRef.PROMOTION_TYPE).subscribe(data => {
       this.promotionTypes = data.map(e => {
-        console.log(e.payload.doc);
         return {
           id: e.payload.doc.id,
-          ...e.payload.doc.data() as PromotionType
+          ...e.payload.doc.data()
         }
-      })
+      });
+
+      // Assign promotions list to every promotion list
+      this.promotionTypes.map(pt => {
+        this.promotionService.listAll(`${DocRef.PROMOTION_TYPE}/${pt.id}/${DocRef.PROMOTION}`).subscribe(pData => {
+          pt.promotions = pData.map(e => {
+            return {
+              id: e.payload.doc.id,
+              ...e.payload.doc.data()
+            }
+          });
+        });
+      });
     });
   }
-
 }
