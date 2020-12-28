@@ -1,0 +1,26 @@
+<h3></h3>
+<div class="monthly-order-history">
+  <span class="month">Dec</span>
+  <ul>
+    <li *ngFor="let order of ordersInDec">
+      <div>
+        {{order.merchantName}}
+        <span class="location">@{{order.location}}</span>
+        <span class="date">{{order.acknowledgedTime.toLocaleDateString()}}</span>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div class="monthly-order-history">
+  <span class="month">Nov</span>
+  <ul>
+    <li *ngFor="let order of ordersInNov">
+      <div>
+        {{order.merchantName}}
+        <span class="location">@{{order.location}}</span>
+        <span class="date">{{order.acknowledgedTime.toLocaleDateString()}}</span>
+      </div>
+    </li>
+  </ul>
+</div>

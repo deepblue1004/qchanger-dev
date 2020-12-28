@@ -1,0 +1,15 @@
+<div class="order-wrapper">
+  <h2>Queuing position</h2>
+  <nav>
+    <ul>
+      <li (click)="onSelectTab(0)" [class.selected]="0 === selectedTabIndex">Upcoming</li>
+      <li (click)="onSelectTab(1)" [class.selected]="1 === selectedTabIndex">History</li>
+    </ul>
+  </nav>
+  <div id="upcoming-orders-box" [class.selected]="0 === selectedTabIndex">
+    <app-upcoming-orders [orders]="upcomingOrders"></app-upcoming-orders>
+  </div>
+  <div id="order-history-box" [class.selected]="1 === selectedTabIndex">
+    <app-order-history [ordersInDec]="oldOrdersInDec" [ordersInNov]="oldOrdersInNov"></app-order-history>
+  </div>
+</div>
