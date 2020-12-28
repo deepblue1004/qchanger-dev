@@ -18,10 +18,10 @@ export class FooterComponent implements OnInit {
   ngOnInit() {
     // Content for bottom navigation bar
     this.navTabs = [
-      new NavTab("home",       "/home"),
-      new NavTab("favourites", "/favourites"),
-      new NavTab("list",       "/list"),
-      new NavTab("account",    "/account")
+      new NavTab('home',       '/home'),
+      new NavTab('favourites', '/favourites'),
+      new NavTab('list',       '/order'),
+      new NavTab('account',    '/account')
     ];
 
     // Tab selection event
