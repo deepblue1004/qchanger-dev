@@ -2,6 +2,10 @@
   font-size: x-large;
 }
 
+#filter-box {
+  border-radius: 10px;
+}
+
 .filter-value {
   margin: 5px;
   padding: 2px;
