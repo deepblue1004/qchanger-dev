@@ -4,7 +4,7 @@ export const ORDERS: Order[] = [
   {
     id: 1,
     merchantName: 'KOI cafe',
-    merchantIcon: 'assets/icon-koi-2.png',
+    merchantIcon: 'assets/icon-koi.png',
     merchantStars: [0, 1, 2, 3],
     location: '304 Orchard',
     currentQueueNumber: 82,

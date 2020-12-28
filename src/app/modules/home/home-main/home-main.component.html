@@ -1,10 +1,17 @@
 <app-home-filter></app-home-filter>
 <app-home-category></app-home-category>
 
-<!-- <div class="card" *ngFor="let title of promotionTitle">
+<div class="banner m-3">
+  <img src="https://i.pinimg.com/originals/1a/05/11/1a05116447c239649c185b07d5f49e12.jpg">
+</div>
 
-</div> -->
-
-<p>
-  {{promotionTypes |json}}
-</p>
+<div class="m-2 mb-5" *ngFor="let pt of promotionTypes">
+  <div class="promotion-header">
+    {{pt.description}}
+  </div>
+  <div class="promotion-box bg-white p-2">
+    <div *ngFor="let p of pt.promotions">
+      <img [src]="p.image" [alt]="p.title">
+    </div>
+  </div>
+</div>

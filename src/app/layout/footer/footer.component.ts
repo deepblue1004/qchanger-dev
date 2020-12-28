@@ -20,7 +20,7 @@ export class FooterComponent implements OnInit {
     this.navTabs = [
       new NavTab('home',       '/home'),
       new NavTab('favourites', '/favourites'),
-      new NavTab('list',       '/order'),
+      new NavTab('order',       '/order'),
       new NavTab('account',    '/account')
     ];
 

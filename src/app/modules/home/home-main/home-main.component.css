@@ -1,0 +1,38 @@
+.banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner > img {
+  width: min(95vw, 400px);
+  height: min(60vw, 250px);
+  border-radius: 12px;
+}
+
+.promotion-header {
+  font-size: 20px;
+  background-color: #f47a79;
+  color: white;
+  padding: 5px 15px 15px 15px;
+  border-radius: 12px 12px 0px 0px;
+  font-family: 'Papyrus', cursive;
+}
+
+.promotion-box {
+  position: relative;
+  top: -10px;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.promotion-box img {
+  width: min(40vw, 170px);
+  height: min(40vw, 170px);
+  margin: 10px;
+  border-radius: 12px;
+}
