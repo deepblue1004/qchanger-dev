@@ -1,0 +1,150 @@
+:host {
+  display: block;
+  background-image: linear-gradient(#ffffff, #cccccc);
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+.header {
+  display: flex;
+  position: sticky;
+  margin: 20px 15px 0px 15px;
+}
+
+.header .iconify{
+  width: 33px;
+  height: 33px;
+}
+
+.header .queueCount {
+  vertical-align: middle;
+  margin-left: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.header label {
+  font-size: 1.7em;
+  font-weight: 600;
+}
+
+.sub-header {
+  display: flex;
+  align-items: baseline;
+  margin: 0px 15px 10px 50px;
+  font-size: 1.3em;
+}
+
+.sub-header label{
+  margin: 0px;
+}
+
+.sub-header label:nth-last-child(2) {
+  margin-left: 15px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.sub-header label:last-child {
+  margin-left: auto;
+  font-size: 0.9em;
+}
+
+.banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner > img {
+  width: min(95vw, 400px);
+  height: min(60vw, 250px);
+  border-radius: 12px;
+}
+
+.btn-queue {
+  position: fixed;
+  width: min-content;
+  bottom: min(5vh, 20px);
+  right: min(5vw, 50px);
+}
+
+.btn-queue label {
+  text-align: center;
+  width: 100%;
+  font-size: 18px;
+  font-weight: bold;
+  color: #777777;
+}
+
+.product-header {
+  font-size: 20px;
+  background-color: #f47a79;
+  color: white;
+  padding: 5px 15px 15px 15px;
+  border-radius: 12px 12px 0px 0px;
+  font-family: 'Papyrus', cursive;
+}
+
+.product-box {
+  position: relative;
+  top: -10px;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-box img {
+  width: min(40vw, 170px);
+  height: min(40vw, 170px);
+  margin: min(2vw, 10px);
+  border-radius: 12px;
+}
+
+.review-header {
+  font-size: 20px;
+  background-color: #f4b479;
+  color: white;
+  padding: 5px 15px 15px 15px;
+  border-radius: 12px 12px 0px 0px;
+  font-family: 'Papyrus', cursive;
+}
+
+.review-box {
+  position: relative;
+  top: -10px;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.review-box img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.review-item {
+  display: flex;
+  width: 100%;
+  margin: 5px;
+  padding: 5px;
+}
+
+.review-rating {
+  margin-left: 20px;
+  font-size: 1.3em;
+  width: max-content;
+}
+
+.review-content {
+  margin-left: 20px;
+  font-size: 16px;
+  text-align: justify;
+}

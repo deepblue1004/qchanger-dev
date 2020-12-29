@@ -22,6 +22,7 @@ import {HomeModule} from './modules/home/home.module';
 import {FavouritesModule} from './modules/favourites/favourites.module';
 import {AccountModule} from './modules/account/account.module';
 import {OrderModule} from './modules/order/order.module';
+import { MerchantModule } from './modules/merchant/merchant.module';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import {OrderModule} from './modules/order/order.module';
     FavouritesModule,
     AccountModule,
     OrderModule,
+    MerchantModule,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,

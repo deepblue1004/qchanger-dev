@@ -1,0 +1,57 @@
+<div class="header">
+  <span class="m-2" (click)="backToHome()">
+    <i class="bi bi-chevron-left font-weight-bold icon-larger text-shadow"></i>
+  </span>
+  <label class="m-1">{{merchant?.name}}</label>
+  <label class="queueCount">
+    <span class="iconify" data-icon="mdi:human-queue" data-inline="false"></span>
+    {{getQueueCount()}}
+  </label>
+</div>
+
+<div class="sub-header">
+  <label class="text-warning">{{'★'.repeat(getRating() | number: '1.0-0')}}</label>
+  <label class="text-warning">{{'☆'.repeat(5 - +getRating().toFixed(0))}}</label>
+  <label>{{getRating()}}</label>
+  <label>{{getWaitingTime()}} mins</label>
+</div>
+
+<div class="banner m-3">
+  <img class="shadow" [src]="merchant?.setting?.bannerImageUrl" [alt]="merchant?.name">
+</div>
+
+<div class="m-2">
+  <div class="product-header">
+    Sample Title (hard coded)
+  </div>
+  <div class="product-box bg-white p-2">
+    <div *ngFor="let p of merchant?.products">
+      <img [src]="p.imageUrl" [alt]="p.name" class="shadow">
+    </div>
+  </div>
+</div>
+
+<div class="m-2 mb-3">
+  <div class="review-header">
+    Reviews
+  </div>
+  <div class="review-box bg-white p-2">
+    <div *ngFor="let r of merchant?.reviews" class="review-item border-bottom">
+      <img src="https://n.sinaimg.cn/sinacn20122/580/w690h690/20200211/f865-ipmxpvy7512180.jpg">
+      <div>
+        <div class="review-rating">
+          <label class="text-warning">{{'★'.repeat(r.rating)}}</label>
+          <label class="text-warning">{{'☆'.repeat(5 - r.rating)}}</label>
+        </div>
+        <div class="review-content">
+          <label>{{r.content}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="btn-queue" (click)="queue()">
+  <i class="fas fa-street-view fa-5x"></i>
+  <label>Queue</label>
+</div>

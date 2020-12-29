@@ -24,6 +24,10 @@ export class FirestoreService<T extends BaseDatabaseModel> {
     return this.firestore.collection<T>(docRef).snapshotChanges();
   }
 
+  getById(id: string, docRef: string) {
+    return this.firestore.collection<T>(docRef).doc(id).snapshotChanges();
+  }
+
   update(obj: T, docRef: string) {
     this.firestore.doc(docRef + obj.id).update(obj);
   }
