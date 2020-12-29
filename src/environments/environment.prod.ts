@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  appName: "Queuetie",
   firebaseConfig: {
     apiKey            : "AIzaSyCw908J3BvZFsXcM6Vqg1wWJ8zaOUGrCB8",
     authDomain        : "qchanger-dev.firebaseapp.com",

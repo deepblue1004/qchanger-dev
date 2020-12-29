@@ -1,5 +1,5 @@
 // Angular Modules
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule, Title} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
@@ -45,7 +45,7 @@ import {OrderModule} from './modules/order/order.module';
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
   ],
-  providers: [],
+  providers: [Title],
   bootstrap: [AppComponent]
 })
 export class AppModule {

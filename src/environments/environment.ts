@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  appName: "Queuetie-Dev",
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   firebaseConfig: {
     apiKey            : "AIzaSyCw908J3BvZFsXcM6Vqg1wWJ8zaOUGrCB8",

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { Title } from '@angular/platform-browser';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-
-  constructor() {
+  constructor(private titleService: Title) {
+    this.titleService.setTitle(environment.appName);
   }
 }
