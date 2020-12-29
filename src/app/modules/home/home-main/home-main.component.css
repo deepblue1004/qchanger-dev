@@ -33,6 +33,6 @@
 .promotion-box img {
   width: min(40vw, 170px);
   height: min(40vw, 170px);
-  margin: 10px;
+  margin: min(2vw, 10px);
   border-radius: 12px;
 }

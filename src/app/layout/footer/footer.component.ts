@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { EventsService } from 'app/services/events.service';
 
 @Component({
   selector: 'app-footer',
@@ -12,6 +12,7 @@ export class FooterComponent implements OnInit {
   public navTabs: NavTab[];
 
   constructor(
+    private eventsService: EventsService,
     private router: Router
   ) { }
 
@@ -25,11 +26,8 @@ export class FooterComponent implements OnInit {
     ];
 
     // Tab selection event
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(event => {
-      // Use 'urlAfterRedirects' instead of 'url' because it may redirect
-      this.navTabs.map(t => t.isSelected = t.routePath == event['urlAfterRedirects'])
+    this.eventsService.routeChanged.subscribe(event => {
+      this.navTabs.map(t => t.isSelected = t.routePath == event.currentRoute);
     });
   }
 
