@@ -32,27 +32,33 @@ export class MerchantMainComponent implements OnInit {
 
       this.merchantService.getById(this.id, DocRef.MERCHANT).subscribe(m => {
         this.merchant = m.payload.data();
-        this.merchant.id = this.id;
 
-        // Assign popular product
-        this.merchantProductService.listAll(`${DocRef.MERCHANT}/${this.id}/${DocRef.MERCHANT_PRODUCT}`).subscribe(pData => {
-          this.merchant.products = pData.map(e => {
-            return {
-              id: e.payload.doc.id,
-              ...e.payload.doc.data()
-            }
-          });
-        });
+        if (this.merchant) {   // If merchant exist
+          this.merchant.id = this.id;
 
-        // Assign reviews
-        this.merchantReviewService.listAll(`${DocRef.MERCHANT}/${this.id}/${DocRef.MERCHANT_REVIEW}`).subscribe(pData => {
-          this.merchant.reviews = pData.map(e => {
-            return {
-              id: e.payload.doc.id,
-              ...e.payload.doc.data()
-            }
+          // Assign popular product
+          this.merchantProductService.listAll(`${DocRef.MERCHANT}/${this.id}/${DocRef.MERCHANT_PRODUCT}`).subscribe(pData => {
+            this.merchant.products = pData.map(e => {
+              return {
+                id: e.payload.doc.id,
+                ...e.payload.doc.data()
+              }
+            });
           });
-        });
+
+          // Assign reviews
+          this.merchantReviewService.listAll(`${DocRef.MERCHANT}/${this.id}/${DocRef.MERCHANT_REVIEW}`).subscribe(pData => {
+            this.merchant.reviews = pData.map(e => {
+              return {
+                id: e.payload.doc.id,
+                ...e.payload.doc.data()
+              }
+            });
+          });
+        }
+        else {
+          this.router.navigate(['/home']);
+        }
       });
     });
   }
@@ -72,7 +78,7 @@ export class MerchantMainComponent implements OnInit {
       this.merchant.reviews.forEach(r => {
         result += r.rating;
       });
-      result = result/this.merchant.reviews.length;
+      result = result / this.merchant.reviews.length;
     }
     return result;
   }
@@ -82,11 +88,11 @@ export class MerchantMainComponent implements OnInit {
   }
 
   queue() {
-    ons.notification.confirm("You need to Login first!", {buttonLabels: ['Cancel', 'Login']})
-    .then(selectLogin => {
-      if(selectLogin) {
-        ons.notification.alert('Havent create login module lah....');
-      }
-    })
+    ons.notification.confirm("You need to Login first!", { buttonLabels: ['Cancel', 'Login'] })
+      .then(selectLogin => {
+        if (selectLogin) {
+          ons.notification.alert('Havent create login module lah....');
+        }
+      })
   }
 }
