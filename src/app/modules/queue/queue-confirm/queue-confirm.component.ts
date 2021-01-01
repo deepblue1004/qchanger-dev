@@ -43,6 +43,10 @@ export class QueueConfirmComponent implements OnInit {
     });
   }
 
+  backToHome() {
+    this.router.navigate(['/home']);
+  }
+
   getCurrentQueueNo() {
     return 5;
   }
