@@ -1,0 +1,22 @@
+.login-wrapper {
+  padding-top: 15vh;
+  padding-left: 25px;
+  padding-right: 25px;
+  height: 100%;
+}
+
+.login-header {
+  font-size: 35px;
+  text-align: left;
+  color: #ffffff;
+  text-shadow: 1px 1px 8px #888888;
+  margin: 10px;
+  font-weight: 700;
+}
+
+.random-bgImg {
+  background: linear-gradient(0deg, rgba(255, 246, 163, 0.3), rgba(215, 204, 200, 0.3)), url(https://picsum.photos/800/600/?blur);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}

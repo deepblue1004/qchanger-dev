@@ -17,7 +17,7 @@ export class FirestoreService<T extends BaseDatabaseModel> {
   }
 
   create(obj: T, docRef: string) {
-    return this.firestore.collection(docRef).add(obj);
+    return this.firestore.collection(docRef).doc(obj.id).set({...obj});
   }
 
   listAll(docRef: string) {

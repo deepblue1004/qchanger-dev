@@ -1,3 +1,4 @@
+import { UserRole } from 'app/shared/enum/UserRole.enum';
 import { BaseDatabaseModel } from './_BaseDatabaseModel';
 
 export class User extends BaseDatabaseModel {
@@ -5,6 +6,9 @@ export class User extends BaseDatabaseModel {
   lastName: string;
   phone: string;
   email: string;
+  emailVerified: boolean;
+  role: UserRole;
+  lastLogin: Date;
 
   constructor(props: User) {
     super();

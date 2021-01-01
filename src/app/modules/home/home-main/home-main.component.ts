@@ -1,4 +1,4 @@
-import { DocRef } from './../../../services/DocRef.enum';
+import { DocRef } from '../../../shared/enum/DocRef.enum';
 import { PromotionType } from './../../../models/PromotionType';
 import { Promotion } from './../../../models/Promotion';
 import { Component, OnInit } from '@angular/core';

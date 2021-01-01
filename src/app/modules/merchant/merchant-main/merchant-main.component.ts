@@ -1,9 +1,10 @@
+import { AuthService } from './../../../services/auth.service';
 import { MerchantReview } from './../../../models/merchantReview';
 import { FirestoreService } from 'app/services/firestore.service';
 import { Merchant } from './../../../models/merchant';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DocRef } from 'app/services/DocRef.enum';
+import { DocRef } from 'app/shared/enum/DocRef.enum';
 import { MerchantProduct } from 'app/models/merchantProduct';
 import * as ons from 'onsenui';
 
@@ -22,7 +23,8 @@ export class MerchantMainComponent implements OnInit {
     private merchantService: FirestoreService<Merchant>,
     private merchantProductService: FirestoreService<MerchantProduct>,
     private merchantReviewService: FirestoreService<MerchantReview>,
-    private router: Router
+    private router: Router,
+    private auth: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -88,11 +90,15 @@ export class MerchantMainComponent implements OnInit {
   }
 
   queue() {
-    ons.notification.confirm("You need to Login first!", { buttonLabels: ['Cancel', 'Login'] })
-      .then(selectLogin => {
-        if (selectLogin) {
-          ons.notification.alert('Havent create login module lah....');
-        }
-      })
+    this.auth.user.subscribe(user => {
+      if (!user) {
+        ons.notification.confirm("You need to Login first!", { buttonLabels: ['Cancel', 'Login'] })
+        .then(selectLogin => {
+          if (selectLogin) {
+            this.router.navigate([`/login/${this.id}`]);
+          }
+        });
+      }
+    });
   }
 }
