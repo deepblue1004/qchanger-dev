@@ -1,6 +1,8 @@
 # QchangerDev
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.24.
+Angular CLI: 11.0.5
+Node: 15.4.0
+Angular: 11.0.5
 
 ## UI Design
 https://8dbad7.axshare.com/
