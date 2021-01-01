@@ -56,12 +56,17 @@ export class AuthService {
             email: user.email,
             emailVerified: user.emailVerified,
             role: UserRole.USER,
-            modifiedAt: new Date(user.metadata.creationTime)
+            modifiedAt: new Date(user.metadata.creationTime),
+            queueing: []
           });
           this.userService.create(new User(this.currentUser), DocRef.USER);
         }
       });
     });
+  }
+
+  updateUser() {
+    this.userService.create(new User(this.currentUser), DocRef.USER);
   }
 
   private firebaseAuthChangeListener(response) {

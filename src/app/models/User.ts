@@ -10,6 +10,8 @@ export class User extends BaseDatabaseModel {
   role: UserRole;
   lastLogin: Date;
 
+  queueing: string[];
+
   constructor(props: User) {
     super();
     Object.keys(props).forEach(prop => {

@@ -63,6 +63,12 @@ export class MerchantMainComponent implements OnInit {
         }
       });
     });
+
+    this.auth.user.subscribe(user => {
+      if (user) {
+        this.auth.createUser();
+      }
+    });
   }
 
   backToHome() {
@@ -91,6 +97,7 @@ export class MerchantMainComponent implements OnInit {
 
   queue() {
     this.auth.user.subscribe(user => {
+      // If user not login
       if (!user) {
         ons.notification.confirm("You need to Login first!", { buttonLabels: ['Cancel', 'Login'] })
         .then(selectLogin => {
@@ -98,6 +105,29 @@ export class MerchantMainComponent implements OnInit {
             this.router.navigate([`/login/${this.id}`]);
           }
         });
+      }
+      // If user logged in
+      else {
+
+        // If already queue
+        console.log(this.auth.currentUser);
+        if(this.auth.currentUser.queueing && this.auth.currentUser.queueing.includes(this.id)) {
+          ons.notification.alert('You already in queue.');
+        }
+        else {
+          ons.notification.confirm(`Are you sure want to queue at ${this.merchant.name}?`, { buttonLabels: ['No', 'Queue'] })
+          .then(selectQueue => {
+            if (selectQueue) {
+              if (this.auth.currentUser.queueing == null)
+              {
+                this.auth.currentUser.queueing = [];
+              }
+              console.log(this.auth.currentUser);
+              this.auth.currentUser.queueing.push(this.id);
+              this.auth.updateUser();
+            }
+          });
+        }
       }
     });
   }

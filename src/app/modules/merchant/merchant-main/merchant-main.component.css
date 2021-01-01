@@ -29,6 +29,14 @@
   font-weight: 600;
 }
 
+.header-location {
+  margin-left: 50px;
+  margin-top: -8px;
+  display: flex;
+  font-size: 0.9em;
+  color: #777777;
+}
+
 .sub-header {
   display: flex;
   align-items: baseline;
