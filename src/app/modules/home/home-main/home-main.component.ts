@@ -1,3 +1,4 @@
+import { AuthService } from './../../../services/auth.service';
 import { DocRef } from '../../../shared/enum/DocRef.enum';
 import { PromotionType } from './../../../models/PromotionType';
 import { Promotion } from './../../../models/Promotion';
@@ -12,10 +13,12 @@ import { FirestoreService } from 'app/services/firestore.service';
 export class HomeMainComponent implements OnInit {
 
   promotionTypes: PromotionType[] = [];
+  showQueueProgress: boolean = false;
 
   constructor(
     private promotionTypeService: FirestoreService<PromotionType>,
-    private promotionService: FirestoreService<Promotion>
+    private promotionService: FirestoreService<Promotion>,
+    private auth: AuthService
   ) { }
 
   ngOnInit() {
@@ -40,5 +43,10 @@ export class HomeMainComponent implements OnInit {
         });
       });
     });
+
+    this.auth.createUser().then(currentUser => {
+      this.showQueueProgress = currentUser.queueing && currentUser.queueing?.length > 0
+    })
   }
+
 }

@@ -63,12 +63,6 @@ export class MerchantMainComponent implements OnInit {
         }
       });
     });
-
-    this.auth.user.subscribe(user => {
-      if (user) {
-        this.auth.createUser();
-      }
-    });
   }
 
   backToHome() {
@@ -96,39 +90,37 @@ export class MerchantMainComponent implements OnInit {
   }
 
   queue() {
-    this.auth.user.subscribe(user => {
-      // If user not login
-      if (!user) {
-        ons.notification.confirm("You need to Login first!", { buttonLabels: ['Cancel', 'Login'] })
-        .then(selectLogin => {
-          if (selectLogin) {
-            this.router.navigate([`/login/${this.id}`]);
+    this.auth.createUser().then(currentUser => {
+      // If user logged in
+
+      // If already queue
+      if(currentUser.queueing && currentUser.queueing.includes(this.id)) {
+        ons.notification.alert('You already in queue.').then(() => {
+          this.router.navigate([`/queue/${this.id}`]);
+        });
+      }
+      else {
+        ons.notification.confirm(`Are you sure want to queue at ${this.merchant.name}?`, { buttonLabels: ['No', 'Queue'] })
+        .then(selectQueue => {
+          if (selectQueue) {
+            if (currentUser.queueing == null)
+            {
+              currentUser.queueing = [];
+            }
+            currentUser.queueing.push(this.id);
+            this.auth.updateUser();
+            this.router.navigate([`/queue/${this.id}`]);
           }
         });
       }
-      // If user logged in
-      else {
-
-        // If already queue
-        console.log(this.auth.currentUser);
-        if(this.auth.currentUser.queueing && this.auth.currentUser.queueing.includes(this.id)) {
-          ons.notification.alert('You already in queue.');
+    }).catch(msg => {
+      // If user not login
+      ons.notification.confirm("You need to Login first!", { buttonLabels: ['Cancel', 'Login'] })
+      .then(selectLogin => {
+        if (selectLogin) {
+          this.router.navigate([`/login/${this.id}`]);
         }
-        else {
-          ons.notification.confirm(`Are you sure want to queue at ${this.merchant.name}?`, { buttonLabels: ['No', 'Queue'] })
-          .then(selectQueue => {
-            if (selectQueue) {
-              if (this.auth.currentUser.queueing == null)
-              {
-                this.auth.currentUser.queueing = [];
-              }
-              console.log(this.auth.currentUser);
-              this.auth.currentUser.queueing.push(this.id);
-              this.auth.updateUser();
-            }
-          });
-        }
-      }
+      });
     });
   }
 }

@@ -1,0 +1,26 @@
+<div class="time-progress">
+  <circle-progress
+  [percent]="waitingPercent"
+  [maxPercent]="100"
+  [title]="getWaitingTime()"
+  [titleFontSize]="28"
+  [titleFontWeight]="700"
+  [showSubtitle]="false"
+  [units]="'min'"
+  [unitsFontSize]="'16'"
+  [radius]="55"
+  [outerStrokeWidth]="10"
+  [innerStrokeWidth]="5"
+  [backgroundPadding]="0"
+
+  [backgroundColor]="'#eeeeee'"
+  [backgroundOpacity] = "0.95"
+  [outerStrokeColor]="'#fff900'"
+  [outerStrokeGradient]="true"
+  [outerStrokeGradientStopColor]="'#fdb900'"
+  [innerStrokeColor]="'#ffefc2'"
+
+  [animation]="true"
+  [animationDuration]="300"
+></circle-progress>
+</div>

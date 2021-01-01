@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import { UserRole } from 'app/shared/enum/UserRole.enum';
+import { resolve } from '@angular/compiler-cli/src/ngtsc/file_system';
+import { rejects } from 'assert';
 
 @Injectable({
   providedIn: 'root'
@@ -37,32 +39,44 @@ export class AuthService {
     console.log("sign out");
   }
 
-  createUser () {
-    this.user.subscribe(user => {
-      this.userService.getById(user.uid, DocRef.USER).subscribe(data => {
-        // Check is this new user
-        if(data.payload.exists) {
-          this.currentUser = data.payload.data();
-        }
-        // Create new user
-        else {
-          this.currentUser = new User({
-            id: user.uid,
-            createdAt: new Date(user.metadata.creationTime),
-            lastLogin: new Date(user.metadata.lastSignInTime),
-            firstName: user.displayName,
-            lastName: "",
-            phone: user.phoneNumber,
-            email: user.email,
-            emailVerified: user.emailVerified,
-            role: UserRole.USER,
-            modifiedAt: new Date(user.metadata.creationTime),
-            queueing: []
+  // Create CurrentUser object, promise resolve only when user logged in, else will reject
+  createUser() {
+    let promise = new Promise<User>((resolve, reject) => {
+      this.user.subscribe(user => {
+        // If got user logged in
+        if(user) {
+          this.userService.getById(user.uid, DocRef.USER).subscribe(data => {
+            // Check is this new user
+            if(data.payload.exists) {
+              this.currentUser = data.payload.data();
+              resolve(this.currentUser);
+            }
+            // Create new user
+            else {
+              this.currentUser = new User({
+                id: user.uid,
+                createdAt: new Date(user.metadata.creationTime),
+                lastLogin: new Date(user.metadata.lastSignInTime),
+                firstName: user.displayName,
+                lastName: "",
+                phone: user.phoneNumber,
+                email: user.email,
+                emailVerified: user.emailVerified,
+                role: UserRole.USER,
+                modifiedAt: new Date(user.metadata.creationTime),
+                queueing: []
+              });
+              this.userService.create(new User(this.currentUser), DocRef.USER);
+              resolve(this.currentUser);
+            }
           });
-          this.userService.create(new User(this.currentUser), DocRef.USER);
+        }
+        else {
+          reject("User not login");
         }
       });
     });
+    return promise;
   }
 
   updateUser() {

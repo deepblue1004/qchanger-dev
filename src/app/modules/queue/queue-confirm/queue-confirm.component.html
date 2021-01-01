@@ -1,0 +1,58 @@
+<div class="header">
+  <div class="header-image">
+    <img [src]="merchant?.setting?.bannerImageUrl" [alt]="merchant?.name">
+  </div>
+  <div class="header-title">
+    <label>
+      {{merchant?.name}}
+    </label>
+  </div>
+  <div class="header-subtitle">
+    <label>
+      @{{merchant?.area}}
+    </label>
+  </div>
+</div>
+
+<div class="queue-body">
+  <div class="qb-header">
+    <label>
+      Your queue have been confirmed.
+    </label>
+  </div>
+  <div class="row h5 text-black-50">
+    <div class="col col-6 d-flex justify-content-center">
+      Current
+    </div>
+    <div class="col col-6 d-flex justify-content-center">
+      Your
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <div class="qb-current col col-6">
+      {{getCurrentQueueNo()}}
+    </div>
+    <span class="qb-center">
+      >>
+    </span>
+    <div class="qb-your col col-6">
+      {{getUserQueueNo()}}
+    </div>
+  </div>
+  <div class="qb-footer">
+    <label>
+      Have a nice day.
+    </label>
+  </div>
+</div>
+
+<div class="remark">
+  <div class="remark-header">
+    Remark:
+  </div>
+  <div class="remark-body">
+    {{getRemarkContent()}}
+  </div>
+</div>
+
+<app-queue-progress></app-queue-progress>

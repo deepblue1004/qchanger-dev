@@ -24,8 +24,9 @@ export class AuthLoginComponent implements OnInit {
     });
     this.auth.user.subscribe(user => {
       if(user) {
-        this.auth.createUser();
-        this.router.navigate([`/merchant/${this.redirectUrl}`]);
+        this.auth.createUser().then(() =>{
+          this.router.navigate([`/merchant/${this.redirectUrl}`]);
+        });
       }
     })
   }

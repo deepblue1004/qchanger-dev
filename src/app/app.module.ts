@@ -25,6 +25,7 @@ import { AccountModule } from './modules/account/account.module';
 import { OrderModule } from './modules/order/order.module';
 import { MerchantModule } from './modules/merchant/merchant.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { QueueModule } from './modules/queue/queue.module';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { AuthModule } from './modules/auth/auth.module';
     FavouritesModule,
     AccountModule,
     OrderModule,
-    MerchantModule
+    MerchantModule,
+    QueueModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,

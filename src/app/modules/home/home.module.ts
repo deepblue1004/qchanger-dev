@@ -1,3 +1,4 @@
+import { QueueModule } from './../queue/queue.module';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -11,12 +12,13 @@ import { HomeCategoryComponent } from './home-category/home-category.component';
   declarations: [
     HomeMainComponent,
     HomeFilterComponent,
-    HomeCategoryComponent
+    HomeCategoryComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
-    OnsenModule
+    OnsenModule,
+    QueueModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,

@@ -29,6 +29,7 @@
     "firebase-tools": "^9.0.1",
     "firebaseui": "^4.7.1",
     "firebaseui-angular": "^5.1.1",
+    "ng-circle-progress": "^1.6.0",
     "ngx-onsenui": "^7.0.0",
     "onsenui": "^2.11.1",
     "rxjs": "~6.6.3",

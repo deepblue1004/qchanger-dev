@@ -1,0 +1,6 @@
+.time-progress {
+  position: fixed;
+  width: min-content;
+  bottom: min(15vh, 55px);
+  right: min(2vw, 30px);
+}

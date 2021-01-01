@@ -1,3 +1,4 @@
+import { QueueConfirmComponent } from './modules/queue/queue-confirm/queue-confirm.component';
 import { AuthLoginComponent } from './modules/auth/auth-login/auth-login.component';
 import { AccountMainComponent } from './modules/account/account-main/account-main.component';
 import { FavouritesMainComponent } from './modules/favourites/favourites-main/favourites-main.component';
@@ -62,6 +63,11 @@ const routes: Routes = [
   {
     path: 'login/:redirectUrl',
     component: AuthLoginComponent,
+    children: []
+  },
+  {
+    path: 'queue/:merchantId',
+    component: QueueConfirmComponent,
     children: []
   },
   {
