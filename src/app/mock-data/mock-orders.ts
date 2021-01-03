@@ -18,7 +18,7 @@ export const ORDERS: Order[] = [
   {
     id: 2,
     merchantName: 'DBS',
-    merchantIcon: 'assets/icon-dbs.png',
+    merchantIcon: 'assets/dbs-bank-vector-logo-small.png',
     merchantStars: [0, 1, 2],
     location: 'Plaza Singapore',
     currentQueueNumber: 150,
