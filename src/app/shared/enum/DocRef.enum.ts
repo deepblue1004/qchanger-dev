@@ -4,5 +4,6 @@ export enum DocRef {
   USER = "users",
   MERCHANT = "merchant",
   MERCHANT_PRODUCT = "products",
-  MERCHANT_REVIEW = "merchant_reviews"
+  MERCHANT_REVIEW = "merchant_reviews",
+  QUEUE = "queue"
 }

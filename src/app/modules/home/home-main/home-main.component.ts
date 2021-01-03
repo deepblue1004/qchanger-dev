@@ -5,6 +5,7 @@ import { PromotionType } from './../../../models/PromotionType';
 import { Promotion } from './../../../models/Promotion';
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from 'app/services/firestore.service';
+import { QueueService } from 'app/services/queue.service';
 
 @Component({
   selector: 'app-home-main',
@@ -19,6 +20,7 @@ export class HomeMainComponent implements OnInit {
   constructor(
     private promotionTypeService: FirestoreService<PromotionType>,
     private promotionService: FirestoreService<Promotion>,
+    private queueService: QueueService,
     private router: Router,
     private auth: AuthService
   ) { }
@@ -47,8 +49,15 @@ export class HomeMainComponent implements OnInit {
     });
 
     this.auth.createUser().then(currentUser => {
-      this.showQueueProgress = currentUser.queueing && currentUser.queueing?.length > 0
-    })
+      this.queueService.getFastestMerchant(currentUser.id).then(mId => {
+        if(mId) {
+          this.showQueueProgress = true;
+        }
+      })
+      .catch(err => {
+        this.showQueueProgress = false;
+      });
+    });
   }
 
   routeTo(dest: string) {

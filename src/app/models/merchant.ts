@@ -9,9 +9,7 @@ export class Merchant extends BaseDatabaseModel{
   joinedAt: Date;
   fullAddress: string;
 
-  currentQueue: string[];
   setting: MerchantSetting;
-
   products: MerchantProduct[];
   reviews: MerchantReview[];
 

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import firebase from 'firebase';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { BaseDatabaseModel } from 'app/models/_BaseDatabaseModel';
 
@@ -17,6 +18,9 @@ export class FirestoreService<T extends BaseDatabaseModel> {
   }
 
   create(obj: T, docRef: string) {
+    if (obj.id == null) {
+      obj.id = this.firestore.createId();
+    }
     return this.firestore.collection(docRef).doc(obj.id).set({...obj});
   }
 
@@ -34,5 +38,48 @@ export class FirestoreService<T extends BaseDatabaseModel> {
 
   hardDelete(id: string, docRef: string) {
     this.firestore.doc(`${docRef}/${id}`).delete();
+  }
+
+  /*
+    Query collection by filter.
+    Optional Args: <orderBy>, <limit>
+
+    Sample filter:
+      let filter = {
+        'userId': ['==', userId],
+        'merchantId': ['==', userId]
+      };
+    Sample orderBy:
+      let orderBy = {
+        'userQueuePosition': 'desc',
+        'createdAt': 'asc'
+      }
+
+    Query operators: https://firebase.google.com/docs/firestore/query-data/queries#query_operators
+    Order and limit: https://firebase.google.com/docs/firestore/query-data/order-limit-data
+
+    Note: need create index inside firebase console in order to use orderBy
+  */
+  filterBy(filter: any, docRef: string, orderBy: any = null, limit?: number) {
+    return this.firestore.collection(docRef, ref => {
+      let query : firebase.firestore.CollectionReference | firebase.firestore.Query = ref;
+      Object.keys(filter).forEach(f => {
+        const value = filter[f];
+        query = query.where(f, value[0], value[1]);
+      });
+
+      if(orderBy) {
+        Object.keys(orderBy).forEach(o => {
+          const direction = orderBy[o];
+          query = query.orderBy(o, direction);
+        });
+      }
+
+      if (limit) {
+        query = query.limit(limit);
+      }
+
+      return query;
+    }).snapshotChanges();
   }
 }

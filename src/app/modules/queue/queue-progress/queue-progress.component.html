@@ -5,7 +5,7 @@
   <circle-progress
   [percent]="waitingPercent"
   [maxPercent]="100"
-  [title]="getWaitingTime()"
+  [title]="waitingTime | async"
   [titleFontSize]="28"
   [titleFontWeight]="700"
   [showSubtitle]="false"

@@ -1,5 +1,5 @@
 export class BaseDatabaseModel {
-  id: string;
-  createdAt: Date;
-  modifiedAt: Date;
+  id: string = null;
+  createdAt: Date = new Date();
+  modifiedAt: Date = null;
 }

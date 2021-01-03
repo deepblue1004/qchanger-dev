@@ -42,7 +42,7 @@ export class AuthService {
     let promise = new Promise<User>((resolve, reject) => {
       this.user.subscribe(user => {
         // If got user logged in
-        if(user) {
+        if(user != null) {
           this.userService.getById(user.uid, DocRef.USER).subscribe(data => {
             // Check is this new user
             if(data.payload.exists) {

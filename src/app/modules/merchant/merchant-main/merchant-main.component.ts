@@ -1,3 +1,4 @@
+import { QueueService } from './../../../services/queue.service';
 import { AuthService } from './../../../services/auth.service';
 import { MerchantReview } from './../../../models/merchantReview';
 import { FirestoreService } from 'app/services/firestore.service';
@@ -18,11 +19,15 @@ export class MerchantMainComponent implements OnInit {
   id: string;
   merchant: Merchant;
 
+  queueCount: Promise<number>;
+  waitingTime: Promise<number>;
+
   constructor(
     private route: ActivatedRoute,
     private merchantService: FirestoreService<Merchant>,
     private merchantProductService: FirestoreService<MerchantProduct>,
     private merchantReviewService: FirestoreService<MerchantReview>,
+    private queueService: QueueService,
     private router: Router,
     private auth: AuthService
   ) { }
@@ -62,6 +67,8 @@ export class MerchantMainComponent implements OnInit {
           this.router.navigate(['/home']);
         }
       });
+
+      this.initialisePromise();
     });
   }
 
@@ -69,8 +76,19 @@ export class MerchantMainComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  getQueueCount() {
-    return 7;
+  initialisePromise() {
+    this.queueCount = new Promise<number>(resolve => {
+      this.queueService.getMerchantQueueList(this.id).then(q => {
+       resolve(q.length);
+      })
+    });
+
+    this.waitingTime = new Promise<number>(resolve => {
+      // TODO: create another method in queueService to calculate waiting time
+      this.queueService.getMerchantQueueList(this.id).then(q => {
+        resolve(q.length * 5);
+      });
+    });
   }
 
   getRating() {
@@ -85,35 +103,35 @@ export class MerchantMainComponent implements OnInit {
     return result;
   }
 
-  getWaitingTime() {
-    return 50;
-  }
-
   queue() {
     this.auth.createUser().then(currentUser => {
       // If user logged in
-
-      // If already queue
-      if(currentUser.queueing && currentUser.queueing.includes(this.id)) {
-        ons.notification.alert('You already in queue.').then(() => {
-          this.router.navigate([`/queue/${this.id}`]);
-        });
-      }
-      else {
-        ons.notification.confirm(`Are you sure want to queue at ${this.merchant.name}?`, { buttonLabels: ['No', 'Queue'] })
-        .then(selectQueue => {
-          if (selectQueue) {
-            if (currentUser.queueing == null)
-            {
-              currentUser.queueing = [];
-            }
-            currentUser.queueing.push(this.id);
-            this.auth.updateUser();
-            this.router.navigate([`/queue/${this.id}`]);
+      try {
+        this.queueService.isInQueue(currentUser.id, this.id).then(isInQueue => {
+          // If already queue
+          if(isInQueue) {
+            ons.notification.alert('You already in queue.').then(() => {
+              this.router.navigate([`/queue/${this.id}`]);
+            });
+          }
+          else {
+            ons.notification.confirm(
+              `Are you sure want to queue at ${this.merchant.name}?`,
+              { buttonLabels: ['No', 'Queue'] }
+            ).then(selectQueue => {
+              if (selectQueue) {
+                this.queueService.addToQueue(currentUser.id, this.id);
+                this.router.navigate([`/queue/${this.id}`]);
+              }
+            });
           }
         });
       }
-    }).catch(msg => {
+      catch(err) {
+        console.log(err);
+      }
+    }).catch(err => {
+      console.log(err);
       // If user not login
       ons.notification.confirm("You need to Login first!", { buttonLabels: ['Cancel', 'Login'] })
       .then(selectLogin => {

@@ -5,7 +5,7 @@
   <label class="m-1">{{merchant?.name}}</label>
   <label class="queueCount">
     <span class="iconify" data-icon="mdi:human-queue" data-inline="false"></span>
-    {{getQueueCount()}}
+    {{queueCount | async}}
   </label>
 </div>
 
@@ -17,7 +17,7 @@
   <label class="text-warning">{{'★'.repeat(+getRating().toFixed(0))}}</label>
   <label class="text-warning">{{'☆'.repeat(5 - +getRating().toFixed(0))}}</label>
   <label>{{getRating() | number: '1.1-1'}}</label>
-  <label>{{getWaitingTime()}} mins</label>
+  <label>{{waitingTime | async}} mins</label>
 </div>
 
 <div class="banner m-2">
