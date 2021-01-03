@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthService } from './../../../services/auth.service';
 import { DocRef } from '../../../shared/enum/DocRef.enum';
 import { PromotionType } from './../../../models/PromotionType';
@@ -18,6 +19,7 @@ export class HomeMainComponent implements OnInit {
   constructor(
     private promotionTypeService: FirestoreService<PromotionType>,
     private promotionService: FirestoreService<Promotion>,
+    private router: Router,
     private auth: AuthService
   ) { }
 
@@ -49,4 +51,7 @@ export class HomeMainComponent implements OnInit {
     })
   }
 
+  routeTo(dest: string) {
+    this.router.navigate([dest]);
+  }
 }

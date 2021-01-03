@@ -5,8 +5,6 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import { UserRole } from 'app/shared/enum/UserRole.enum';
-import { resolve } from '@angular/compiler-cli/src/ngtsc/file_system';
-import { rejects } from 'assert';
 
 @Injectable({
   providedIn: 'root'

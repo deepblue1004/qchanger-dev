@@ -33,7 +33,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
         size: 'compact'
     },
       defaultCountry: 'SG',
-      whitelistedCountries: ['MY', 'SG']
+      whitelistedCountries: ['MY', 'SG', 'TW', 'KR', 'HK']
     },
     //firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
   ],

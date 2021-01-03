@@ -2,18 +2,19 @@
 <app-home-category></app-home-category>
 
 <div class="banner m-2">
-  <img src="https://i.pinimg.com/originals/1a/05/11/1a05116447c239649c185b07d5f49e12.jpg">
+  <img src="https://rimage.gnst.jp/rest/img/57mc75hg0000/s_0nia.jpg" (click)="routeTo('merchant/Gsxks2hFMlEdUmr83YSj')">
 </div>
 
-<div class="m-2 mb-5" *ngFor="let pt of promotionTypes">
-  <div class="promotion-header">
-    {{pt.description}}
-  </div>
-  <div class="promotion-box bg-white p-2">
-    <div *ngFor="let p of pt.promotions">
-      <img [src]="p.image" [alt]="p.title" class="shadow">
+<div class="d-flex justify-content-center">
+  <div class="m-2 mb-5 promotion" *ngFor="let pt of promotionTypes">
+    <div class="promotion-header">
+      {{pt.description}}
+    </div>
+    <div class="promotion-box bg-white p-2">
+      <div *ngFor="let p of pt.promotions">
+        <img [src]="p.image" [alt]="p.title" class="shadow">
+      </div>
     </div>
   </div>
 </div>
-
 <app-queue-progress *ngIf="showQueueProgress"></app-queue-progress>
