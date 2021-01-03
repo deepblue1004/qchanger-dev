@@ -24,4 +24,11 @@ export class UpcomingOrdersComponent implements OnInit {
   onCancel(order: Order): void {
     this.orders = this.orders.filter(currentOrder => order.id !== currentOrder.id)
   }
+
+  onSelectToCancel(order: Order): void {
+    const option = window.confirm('Do you really want to cancel it?')
+    if (option === true) {
+      this.onCancel(order)
+    }
+  }
 }
