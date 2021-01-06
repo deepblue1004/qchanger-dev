@@ -15,11 +15,11 @@
 }
 
 .selectedTab {
-  color: #ffa500;
+  color: #ffd001 !important;
   font-weight: 900;
 }
 
-@supports ((background-clip: text) or (-webkit-background-clip: text)) and
+/* @supports ((background-clip: text) or (-webkit-background-clip: text)) and
   (-webkit-text-fill-color: transparent) {
     .selectedTab {
     background-image: linear-gradient(#ffa500, #ffff00);
@@ -28,4 +28,4 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-}
+} */
