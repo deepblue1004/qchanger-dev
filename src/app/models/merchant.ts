@@ -11,7 +11,6 @@ export class Merchant extends BaseDatabaseModel{
 
   setting: MerchantSetting;
   products: MerchantProduct[];
-  reviews: MerchantReview[];
 
   constructor(props: Merchant) {
     super();

@@ -1,3 +1,5 @@
+import { rejects } from 'assert';
+import { resolve } from '@angular/compiler-cli/src/ngtsc/file_system';
 import { QueueService } from './../../../services/queue.service';
 import { AuthService } from './../../../services/auth.service';
 import { MerchantReview } from './../../../models/merchantReview';
@@ -8,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DocRef } from 'app/shared/enum/DocRef.enum';
 import { MerchantProduct } from 'app/models/merchantProduct';
 import * as ons from 'onsenui';
+import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-merchant-main',
@@ -18,9 +21,14 @@ export class MerchantMainComponent implements OnInit {
 
   id: string;
   merchant: Merchant;
+  merchantReviews: MerchantReview[] = [];
 
   queueCount: Promise<number>;
   waitingTime: Promise<number>;
+  isUserLogin: Promise<boolean>;
+  userId: Promise<string> | null = null;
+
+  newReview: MerchantReview = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,11 +37,15 @@ export class MerchantMainComponent implements OnInit {
     private merchantReviewService: FirestoreService<MerchantReview>,
     private queueService: QueueService,
     private router: Router,
-    private auth: AuthService
-  ) { }
+    private auth: AuthService,
+    private modalService: NgbModal,
+    config: NgbModalConfig
+  ) {
+    config.backdrop = 'static';
+    config.centered = true;
+  }
 
   ngOnInit(): void {
-
     this.route.params.subscribe(params => {
       this.id = params['id'];
 
@@ -54,12 +66,20 @@ export class MerchantMainComponent implements OnInit {
           });
 
           // Assign reviews
-          this.merchantReviewService.listAll(`${DocRef.MERCHANT}/${this.id}/${DocRef.MERCHANT_REVIEW}`).subscribe(pData => {
-            this.merchant.reviews = pData.map(e => {
-              return {
-                id: e.payload.doc.id,
-                ...e.payload.doc.data()
-              }
+          let filter = {
+            'merchantId': ['==', this.id]
+          };
+          this.merchantReviewService.filterBy(filter, DocRef.MERCHANT_REVIEW).subscribe(reviews => {
+            reviews.forEach(r => {
+              let reviewItem = new MerchantReview(r.payload.doc.data() as MerchantReview);
+              this.auth.getProfilePic(reviewItem.userId).then(url => {
+                reviewItem.userProfilePicUrl = url;
+                // Check Dulplicate
+                if (this.merchantReviews.every(rd => rd.id != reviewItem.id))
+                {
+                  this.merchantReviews.push(reviewItem);
+                }
+              });
             });
           });
         }
@@ -69,7 +89,20 @@ export class MerchantMainComponent implements OnInit {
       });
 
       this.initialisePromise();
+
+      this.userId.then(uid => {
+        this.newReview = new MerchantReview({
+          userId: uid,
+          merchantId: this.id,
+          rating: 5,
+          content: null
+        } as MerchantReview);
+      })
     });
+  }
+
+  openModal(content) {
+    this.modalService.open(content);
   }
 
   backToHome() {
@@ -89,18 +122,75 @@ export class MerchantMainComponent implements OnInit {
         resolve(q.length * 5);
       });
     });
+
+    this.userId = new Promise<string>(resolve => {
+      this.auth.createUser().then(currentUser => {
+        if (currentUser) {
+          resolve(currentUser.id);
+        }
+        else {
+          resolve(null);
+        }
+      })
+      .catch(err => {
+        resolve(null);
+      });
+    });
   }
 
   getRating() {
     var result = 0;
 
-    if (this.merchant?.reviews) {         // Check got review or not
-      this.merchant.reviews.forEach(r => {
+    if (this.merchantReviews.length > 0) {         // Check got review or not
+      this.merchantReviews.forEach(r => {
         result += r.rating;
       });
-      result = result / this.merchant.reviews.length;
+      result = result / this.merchantReviews.length;
     }
     return result;
+  }
+
+  getUserProfile(userId?: string) {
+    // let promise: Promise<string>;
+    // this.userId.then(id => {
+    //   if(userId == null) {
+    //     userId = id;
+    //   }
+
+    //   promise = new Promise((resolve, reject) => {
+    //     this.auth.getProfilePic(userId).then(url => {
+    //       resolve(url);
+    //     })
+    //     .catch(err => {
+    //       reject(err);
+    //     });
+    //   });
+    // });
+
+    // return promise;
+
+    // this.userId.then(id => {
+    //     if(userId == null) {
+    //       userId = id;
+    //     }
+
+    //      this.auth.getProfilePic(userId).subscribe(a=>{
+    //       return a
+    //     })
+    //   });
+    console.log("call");
+    return "aaa";
+  }
+
+  saveReview() {
+    this.newReview.createdAt = new Date();
+    this.merchantReviewService.create(this.newReview, DocRef.MERCHANT_REVIEW).then(() => {
+      this.modalService.dismissAll();
+      this.newReview.rating = 5;
+      this.newReview.content = null;
+    });
+
+    console.log(this.newReview);
   }
 
   queue() {

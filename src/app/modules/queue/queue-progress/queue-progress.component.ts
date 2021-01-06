@@ -30,7 +30,6 @@ export class QueueProgressComponent implements OnInit {
 
   initialisePromise() {
     this.waitingTime = new Promise<number>(resolve => {
-      console.log(111111);
       this.auth.createUser().then(currentUser => {
         new Promise<string>(resolve => {
           if(!this.merchantId) {

@@ -1,9 +1,12 @@
 import { BaseDatabaseModel } from "./_BaseDatabaseModel";
 
 export class MerchantReview extends BaseDatabaseModel{
-  createdById: string;
+  userId: string;
+  merchantId: string;
   content: string;
   rating: number;
+
+  userProfilePicUrl: string = null;
 
   constructor(props: MerchantReview) {
     super();

@@ -40,8 +40,8 @@
     Reviews
   </div>
   <div class="review-box bg-white p-2">
-    <div *ngFor="let r of merchant?.reviews" class="review-item border-bottom">
-      <img src="https://s2.favim.com/orig/140714/boy-handsome-man-sexy-Favim.com-1912431.jpg">
+    <div *ngFor="let r of merchantReviews" class="review-item border-bottom">
+      <img [src]="r.userProfilePicUrl">
       <div>
         <div class="review-rating">
           <label class="text-warning">{{'★'.repeat(r.rating)}}</label>
@@ -52,8 +52,38 @@
         </div>
       </div>
     </div>
+    <div class="btn-addReview bg-warning" (click)="openModal(addReviewModal)" *ngIf="userId | async">
+      <span>Add Review</span>
+    </div>
   </div>
 </div>
+
+<ng-template #addReviewModal let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add New Review</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="addReview-rating">
+      <ngb-rating [max]="5" [(rate)]="newReview.rating">
+        <ng-template let-fill="fill" let-index="index">
+          <span class="star h4"  [class.text-warning]="fill === 100" [class.text-black-50]="fill != 100">★</span>
+        </ng-template>
+      </ngb-rating>
+      <span>{{newReview.rating}}</span>
+    </div>
+    <div class="addReview-content mt-2">
+      <textarea class="form-control" placeholder="Leave your comment here..."
+        [(ngModel)]="newReview.content" #message='ngModel'></textarea>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="saveReview()">Save</button>
+  </div>
+</ng-template>
+
 
 <div class="btn-queue" (click)="queue()">
   <i class="fas fa-street-view fa-5x"></i>

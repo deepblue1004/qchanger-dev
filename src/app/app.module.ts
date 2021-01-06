@@ -7,6 +7,7 @@ import { environment } from 'environments/environment';
 
 // Third Party Module
 import { OnsenModule } from 'ngx-onsenui';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -40,9 +41,11 @@ import { QueueModule } from './modules/queue/queue.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     OnsenModule,
+    NgbModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    AngularFirestoreModule,
     AuthModule,
     HomeModule,
     FavouritesModule,
