@@ -66,6 +66,11 @@ const routes: Routes = [
     children: []
   },
   {
+    path: 'login',
+    component: AuthLoginComponent,
+    children: []
+  },
+  {
     path: 'queue/:merchantId',
     component: QueueConfirmComponent,
     children: []

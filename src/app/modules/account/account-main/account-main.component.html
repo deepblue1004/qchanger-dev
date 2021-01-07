@@ -1,3 +1,52 @@
-<div class="d-flex justify-content-center">
-  <img src="../../../../assets/acc-ss.png" class="fake-page">
+<div *ngIf="currentUser">
+  <div class="account-header" >
+    <div class="profile">
+      <img [src]="currentUser.profileUrl">
+      <div class="userName">
+        <div>{{(currentUser.phone)}}</div>
+        <div>ID: {{currentUser.id}}</div>
+      </div>
+    </div>
+    <div class="level">
+      <span>Level 1</span>
+      <span class="font-weight-bold">100 <span class="iconify" data-icon="twemoji:coin" data-inline="false"></span></span>
+    </div>
+  </div>
+
+  <div class="account-body">
+    <div class="body-item">
+      <span>Profile</span>
+      <i class="bi bi-chevron-right"></i>
+    </div>
+    <div class="body-item">
+      <span>Vouchers</span>
+      <i class="bi bi-chevron-right"></i>
+    </div>
+    <div class="body-item">
+      <span>Invite Friends</span>
+      <i class="bi bi-chevron-right"></i>
+    </div>
+    <div class="body-item">
+      <span>Help Center</span>
+      <i class="bi bi-chevron-right"></i>
+    </div>
+    <div class="body-item">
+      <span>More</span>
+      <i class="bi bi-chevron-right"></i>
+    </div>
+    <div class="body-item" (click)="logout()">
+      <span>Logout</span>
+      <i class="bi bi-chevron-right"></i>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!currentUser" class="login">
+ <div class="button button-big bg-app-primary" (click)="login()">
+   Login
+ </div>
+</div>
+
+<div class="version">
+  <span>Queuetie v0.1</span>
 </div>
