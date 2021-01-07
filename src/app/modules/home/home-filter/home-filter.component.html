@@ -51,7 +51,7 @@
               <label class="font-weight-bold">{{filterProperties[1].name | titlecase}}</label>
               <span class="font-weight-bold">
                 <span
-                  [innerHTML]='filterProperties[1].value == 60 ? "<i class=\"fas fa-infinity\"></i>" : filterProperties[1].value'></span>
+                  [innerHTML]='filterProperties[1].value == 60 ? "60+" : filterProperties[1].value'></span>
                 {{filterProperties[1].unit}}
               </span>
             </div>
@@ -59,7 +59,7 @@
               (input)="setFilterProperty(1, waitingTime.value, (waitingTime.value - 5)/55)">
             <div class="box-minmax">
               <span>5</span>
-              <span><i class="fas fa-infinity"></i></span>
+              <span>60+</span>
             </div>
           </div>
         </div>

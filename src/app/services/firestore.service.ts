@@ -37,7 +37,7 @@ export class FirestoreService<T extends BaseDatabaseModel> {
   }
 
   hardDelete(id: string, docRef: string) {
-    this.firestore.doc(`${docRef}/${id}`).delete();
+    return this.firestore.doc(`${docRef}/${id}`).delete();
   }
 
   /*
@@ -74,7 +74,6 @@ export class FirestoreService<T extends BaseDatabaseModel> {
           query = query.orderBy(o, direction);
         });
       }
-
       if (limit) {
         query = query.limit(limit);
       }

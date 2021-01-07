@@ -7,7 +7,7 @@
     </ul>
   </nav>
   <div id="upcoming-orders-box" [class.selected]="0 === selectedTabIndex">
-    <app-upcoming-orders [orders]="upcomingOrders"></app-upcoming-orders>
+    <app-upcoming-orders></app-upcoming-orders>
   </div>
   <div id="order-history-box" [class.selected]="1 === selectedTabIndex">
     <app-order-history [ordersInDec]="oldOrdersInDec" [ordersInNov]="oldOrdersInNov"></app-order-history>

@@ -1,20 +1,24 @@
 <h3>Today</h3>
 <ul class="upcoming-orders">
   <li *ngFor="let order of orders" (click)="onSelect(order)" [class.selected]="order === selectedOrder">
-    <div class="order-item-box">
-      <img src="{{order.merchantIcon}}" class="merchant-icon" alt="merchant-icon"/>
-      <div>
-        <span class="merchant-name">{{order.merchantName}}</span>@<span
-        class="merchant-location">{{order.location}}</span>
+    <div class="order-item-box" >
+      <div (click)="routeToQueue(order.merchantId)">
+        <img src="{{order.merchantIcon}}" class="merchant-icon" alt="merchant-icon"/>
+        <div>
+          <span class="merchant-name">{{order.merchantName}}</span>@<span
+          class="merchant-location">{{order.location}}</span>
+        </div>
+        <ul class="merchant-stars">
+          <li *ngFor="let star of order.merchantStars"></li>
+        </ul>
+        <div class="queue-info">
+          <span class="current">{{order.currentQueueNumber}}</span>
+          <span class="separator">>></span>
+          <span class="mine">{{order.myQueueNumber}}</span>
+        </div>
       </div>
-      <ul class="merchant-stars">
-        <li *ngFor="let star of order.merchantStars"></li>
-      </ul>
-      <div class="queue-info">
-        <span class="current">{{order.currentQueueNumber}}</span>
-        <span class="separator">>></span>
-        <span class="mine">{{order.myQueueNumber}}</span>
-      </div>
+
+
       <div class="queue-info-eta"><span class="eta">{{order.estimatedTimeOfArrival}}</span>min</div>
       <span class="btn-cancel" (click)="onSelectToCancel(order)">cancel</span>
     </div>

@@ -1,4 +1,5 @@
-import { DocRef } from 'app/shared/enum/DocRef.enum';
+import { resolve } from '@angular/compiler-cli/src/ngtsc/file_system';
+import { DocRef } from './../shared/enum/DocRef.enum';
 import { QueueItem } from '../models/queueItem';
 import { FirestoreService } from './firestore.service';
 import { Injectable } from '@angular/core';
@@ -59,7 +60,8 @@ export class QueueService {
 
     let promise = new Promise<string[]>((resolve, reject) => {
       try {
-        this.queueItemService.filterBy(filter, DocRef.QUEUE).subscribe(q => {
+        this.queueItemService.filterBy(filter, DocRef.QUEUE, null, 0).subscribe(q => {
+          //console.log(q);
           if(q.length > 0) {
             let qList = [];
             q.forEach(qItem => {
@@ -195,5 +197,24 @@ export class QueueService {
     });
 
     return promise;
+  }
+
+  cancelQueue(userId: string, merchantId: string) {
+    let filter = {
+      'userId': ['==', userId],
+      'merchantId': ['==', merchantId]
+    };
+
+
+    return new Promise<string>(resolve => {
+      this.queueItemService.filterBy(filter, DocRef.QUEUE).subscribe(q => {
+        // If user in queue
+        if(q.length > 0) {
+          this.queueItemService.hardDelete(q[0].payload.doc.id, DocRef.QUEUE).then(a => {
+            resolve("done");
+          })
+        }
+      })
+    })
   }
 }

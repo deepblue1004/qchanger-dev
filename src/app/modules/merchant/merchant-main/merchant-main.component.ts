@@ -210,8 +210,9 @@ export class MerchantMainComponent implements OnInit {
               { buttonLabels: ['No', 'Queue'] }
             ).then(selectQueue => {
               if (selectQueue) {
-                this.queueService.addToQueue(currentUser.id, this.id);
-                this.router.navigate([`/queue/${this.id}`]);
+                this.queueService.addToQueue(currentUser.id, this.id).then(()=> {
+                  this.router.navigate([`/queue/${this.id}`]);
+                })
               }
             });
           }
