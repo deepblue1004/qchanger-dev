@@ -13,16 +13,19 @@ export class HomeCategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.categoryItems = [
-      new CategoryItem("food",     "emojione:pot-of-food",      "/"),
-      new CategoryItem("bank",     "emojione:bank",             "/"),
-      new CategoryItem("clinic",   "emojione:hospital",         "/"),
-      new CategoryItem("movie",    "emojione:clapper-board",    "/"),
-      new CategoryItem("sport",    "emojione:tennis",           "/"),
-      new CategoryItem("event",    "emojione:circus-tent",      "/"),
-      new CategoryItem("transpot", "emojione:station",          "/"),
-      new CategoryItem("zoo",      "emojione:leopard",          "/"),
-      new CategoryItem("shopping", "emojione:department-store", "/"),
-      new CategoryItem("religion", "emojione:mosque",           "/"),
+      new CategoryItem("restaurant", "emojione:pot-of-food",                  "/"),
+      new CategoryItem("bank",       "emojione:bank",                         "/"),
+      new CategoryItem("post",       "noto-v1:open-mailbox-with-raised-flag", "/"),
+      new CategoryItem("hospital",   "emojione:hospital",                     "/"),
+      new CategoryItem("government", "emojione:flag-for-singapore",           "/"),
+      new CategoryItem("outlet",     "logos:shopify",                         "/"),
+      new CategoryItem("telecom",    "fxemoji:cellphone",                     "/"),
+      new CategoryItem("event",      "twemoji:circus-tent",                   "/"),
+      //new CategoryItem("transpot",   "emojione:station",                    "/"),
+      //new CategoryItem("movie",      "emojione:clapper-board",              "/"),
+      //new CategoryItem("sport",      "emojione:tennis",                     "/"),
+      //new CategoryItem("zoo",        "emojione:leopard",                    "/"),
+      //new CategoryItem("religion",   "fxemoji:church",                      "/"),
     ]
   }
 

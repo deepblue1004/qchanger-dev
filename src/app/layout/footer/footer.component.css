@@ -16,7 +16,7 @@
 
 .selectedTab {
   color: #ffd001 !important;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 /* @supports ((background-clip: text) or (-webkit-background-clip: text)) and

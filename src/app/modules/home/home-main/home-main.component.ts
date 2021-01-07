@@ -53,10 +53,9 @@ export class HomeMainComponent implements OnInit {
         if(mId) {
           this.showQueueProgress = true;
         }
-      })
-      .catch(err => {
-        this.showQueueProgress = false;
       });
+    }).catch(err => {
+      this.showQueueProgress = false;
     });
   }
 
