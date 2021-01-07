@@ -1,7 +1,7 @@
 .account-header,
 .account-body {
   background-color: #ffffff;
-  width: min(100vw, 400px);
+  width: 100vw;
   font-size: 20px;
 }
 

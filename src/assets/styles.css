@@ -63,6 +63,6 @@
 }
 
 .fake-page {
-  width: min(100vw, 400px);
+  width: min(100vw, 450px);
   height: min(100vh, 800px);
 }
